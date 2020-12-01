@@ -4,7 +4,8 @@
   "description": "A discord bot you can use to give accounts to your server's members",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
