@@ -108,7 +108,8 @@ bot.on("message", async message => {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");	
         let messageArray = message.content.split(" ");	
         let args = messageArray.slice(1);	
-        try{	
+        try{
+            if (!args[0]||!args[1]) return message.reply(`Add an argument nigga...`);    
             settings[args[0].toLowerCase()] = args[1].toLowerCase()	
             fs.writeFileSync(__dirname+"/settings.json", JSON.stringify(settings));	
             message.reply(args[0]+" changed to "+args[1])	
