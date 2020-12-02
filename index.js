@@ -179,7 +179,7 @@ bot.on("message", async message => {
         }	
     }); 	
 }	
-if(command === "addMore") { 
+if(command === "addmore") { 
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(" ");  
         let args = messageArray.slice(1);   
@@ -205,7 +205,7 @@ if(command === "addMore") {
         }   
 
         else {  
-            let newData = {"email":acc[0],"password":acc[1]}    
+            let newData = acc;   
             data = JSON.parse(data) 
             try{    
                 data.push(newData)  
