@@ -22,7 +22,7 @@ bot.on("message", async message => {
     .split(" ")[0];	
 
     if (command === "gen") {	
-        if(message.channel.id !== "783474366365171722") return message.channel.send("This command can be runned only in the generate channel")	
+        if(message.channel.id !== process.env.CHANNEL_TOKEN) return message.channel.send("This command can be runned only in the generate channel")	
 
         if (generated.has(message.author.id)) {	
             message.channel.send("Wait before generating another account!. - " + message.author);	
