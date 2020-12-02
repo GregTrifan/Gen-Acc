@@ -177,10 +177,10 @@ bot.on("message", async message => {
             let store = accounts;
             try{    
                 data.push(newData)  
-                fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(store)) 
+                fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(accounts)) 
                 message.reply(`${accounts[1] ? "accounts" : "account" } added!`) 
             } catch {   
-                message.channel.send('**Error** Cannot add that account/s!')  
+                message.channel.send('**Error** Cannot add that account/s!');  
             }   
         }   
     });     
