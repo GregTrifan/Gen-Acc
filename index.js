@@ -186,7 +186,7 @@ if(command === "addmore") {
         let messageArray = message.content.split(" ");  
         let args = messageArray[0];
         let commander = messageArray.slice(2);
-        if (!Array.isArray(commander) || !commander.length || args) return message.reply("please add least on account");   
+        if (!Array.isArray(commander) || !commander.length || !args) return message.reply("please add least on account");   
         let acc = commander.map(content => {
             account=content.split(":");
             return {
