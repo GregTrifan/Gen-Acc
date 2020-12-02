@@ -185,7 +185,7 @@ if(command === "addmore") {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(" ");  
         let args = messageArray[0];
-        let commander = messageArray.slice(1);
+        let commander = messageArray.slice(2);
         if (!Array.isArray(commander) || !commander.length || args) return message.reply("please add least on account");   
         let acc = commander.map(content => {
             account=content.split(":");
