@@ -113,8 +113,8 @@ bot.on("message", async message => {
             fs.writeFileSync(__dirname+"/settings.json", JSON.stringify(settings));	
             message.reply(args[0]+" changed to "+args[1])	
 
-        } catch{	
-            message.reply("An error occured")	
+        } catch (err){	
+            message.reply("An error occured",err);	
         }	
     }	
 
