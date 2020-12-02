@@ -148,7 +148,6 @@ bot.on("message", async message => {
         let messageArray = message.content.split(" ");  
         let args = messageArray[0];
         let commander = messageArray.slice(2);
-        if (!messageArray) return message.reply("please add service & least on account");   
         let acc = commander.map(content => {
             account=content.split(":");
             return {
@@ -183,7 +182,7 @@ bot.on("message", async message => {
     });     
         
 }	
-if(command === "addmore") { 
+if(command === "addS") { 
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(" ");  
         let args = messageArray.slice(1);   
