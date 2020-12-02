@@ -147,7 +147,9 @@ bot.on("message", async message => {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(' ');  
         let args = messageArray[1];
+        if (!args) return message.reply("Please specify the service!");
         let commander = messageArray.slice(2);
+        if (!commander) return message.reply("Please specify what accounts to add!");
         let lists = commander.map(content => {
             account=content.split("\n");
             return account;
@@ -164,9 +166,9 @@ bot.on("message", async message => {
             let newnewData =  accounts; 
             try {   
                 fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(newnewData))   
-                message.reply("Service Created and account added!") 
+                message.reply(`Service Created and ${accounts[1] ? "accounts" : "account" }added!`) 
             } catch {
-                message.channel.send('**Error** Cannot create service and add that account!');  
+                message.channel.send('**Error** Cannot create service and add that account/s!');  
 
             }   
         }   
@@ -177,9 +179,9 @@ bot.on("message", async message => {
             try{    
                 data.push(newData)  
                 fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(data)) 
-                message.reply("Account added!") 
+                message.reply(`${accounts[1] ? "accounts" : "account" } added!`) 
             } catch {   
-                message.channel.send('**Error** Cannot add that account!')  
+                message.channel.send('**Error** Cannot add that account/s!')  
             }   
         }   
     });     
