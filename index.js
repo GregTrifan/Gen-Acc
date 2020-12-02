@@ -190,8 +190,8 @@ if(command === "addmore") {
         let acc = commander.map(content => {
             account=content.split(":");
             return {
-                "email":account[0],
-                "password":account[1]
+                "email":acc[0],
+                "password":acc[1]
             };
         });
         
