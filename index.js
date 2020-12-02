@@ -109,7 +109,7 @@ bot.on("message", async message => {
         let messageArray = message.content.split(" ");	
         let args = messageArray.slice(1);	
         try{
-            if (!args[0]||!args[1]) return message.reply(`Add an argument nigga...`);    
+            if (!args[0]||!args[1]) return message.reply(`please add an argument`);    
             settings[args[0].toLowerCase()] = args[1].toLowerCase()	
             fs.writeFileSync(__dirname+"/settings.json", JSON.stringify(settings));	
             message.reply(args[0]+" changed to "+args[1])	
@@ -179,6 +179,44 @@ bot.on("message", async message => {
         }	
     }); 	
 }	
+if(command === "addMore") { 
+        if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
+        let messageArray = message.content.split(" ");  
+        let args = messageArray.slice(1);   
+        let acc = args.map(content => {
+            account=content.split(":");
+            return {
+                "email":account[0],
+                "password":account[1]
+            };
+        });
+        
+
+        fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) {     
+        if(err){    
+            let newnewData =  acc; 
+            try {   
+                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(newnewData))   
+                message.reply("Service Created and account added!") 
+            } catch {
+                message.channel.send('**Error** Cannot create service and add that account!');  
+
+            }   
+        }   
+
+        else {  
+            let newData = {"email":acc[0],"password":acc[1]}    
+            data = JSON.parse(data) 
+            try{    
+                data.push(newData)  
+                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(data)) 
+                message.reply("Account added!") 
+            } catch {   
+                message.channel.send('**Error** Cannot add that account!')  
+            }   
+        }   
+    });     
+}   
 
 if(command === "help") {	
     if (!message.member.hasPermission("ADMINISTRATOR")) {	
