@@ -48,7 +48,7 @@ bot.on("message", async message => {
                     footer: {	
                         icon_url:	
                             "https://cdn.discordapp.com/avatars/530778425540083723/7a05e4dd16825d47b6cdfb02b92d26a5.png",	
-                        text: "Buy discord bots from Silvano#1337"	
+                        text: "Buy discord bots from Skorpion#0471"	
                     },	
                     thumbnail: {	
                         url:	
