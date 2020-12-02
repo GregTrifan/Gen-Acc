@@ -146,7 +146,8 @@ bot.on("message", async message => {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");	
         let messageArray = message.content.split(" ");	
         let args = messageArray.slice(1);	
-        var acc = args[1].split(":");	
+        var acc = args[1].split(":");
+        if (acc[1].includes(":")) return message.reply("Please don't add multiple accounts within the command")
 
         fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) { 	
         if(err){	
