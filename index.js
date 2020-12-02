@@ -143,45 +143,7 @@ bot.on("message", async message => {
         });	
     }	
 
-    if(command === "add") {	
-        if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");	
-        let messageArray = message.content.split(" ");	
-        let args = messageArray.slice(1);	
-        var acc = args[1].split(":");
-        if (args[2]) { return message.reply("Please don't add multiple accounts within the command");}
-
-        fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) { 	
-        if(err){	
-            let newnewData = 	
-            [{	
-                
-                "email":acc[0],	
-                "password":acc[1]
-                
-            }]	
-            try {	
-                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(newnewData))	
-                message.reply("Service Created and account added!")	
-            } catch {
-                message.channel.send('**Error** Cannot create service and add that account!');	
-
-            }	
-        }	
-
-        else {	
-            let newData = {"email":acc[0],"password":acc[1]}	
-            data = JSON.parse(data)	
-            try{	
-                data.push(newData)	
-                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(data))	
-                message.reply("Account added!")	
-            } catch {	
-                message.channel.send('**Error** Cannot add that account!')	
-            }	
-        }	
-    }); 	
-}	
-if(command === "addmore") { 
+    if(command === "add") {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(" ");  
         let args = messageArray[0];
@@ -213,6 +175,45 @@ if(command === "addmore") {
             try{    
                 data.push(newData)  
                 fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(data)) 
+                message.reply("Account added!") 
+            } catch {   
+                message.channel.send('**Error** Cannot add that account!')  
+            }   
+        }   
+    });     
+        
+}	
+if(command === "addmore") { 
+        if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
+        let messageArray = message.content.split(" ");  
+        let args = messageArray.slice(1);   
+        var acc = args[1].split(":");
+        if (args[2]) { return message.reply("Please don't add multiple accounts within the command");}
+
+        fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) {     
+        if(err){    
+            let newnewData =    
+            [{  
+                
+                "email":acc[0], 
+                "password":acc[1]
+                
+            }]  
+            try {   
+                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(newnewData))   
+                message.reply("Service Created and account added!") 
+            } catch {
+                message.channel.send('**Error** Cannot create service and add that account!');  
+
+            }   
+        }   
+
+        else {  
+            let newData = {"email":acc[0],"password":acc[1]}    
+            data = JSON.parse(data) 
+            try{    
+                data.push(newData)  
+                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(data)) 
                 message.reply("Account added!") 
             } catch {   
                 message.channel.send('**Error** Cannot add that account!')  
