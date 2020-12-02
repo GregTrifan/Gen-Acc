@@ -114,7 +114,7 @@ bot.on("message", async message => {
             message.reply(args[0]+" changed to "+args[1])	
 
         } catch (err){	
-            message.reply("An error occured",err);	
+            message.reply(`An error occured ${err}`);	
         }	
     }	
 
