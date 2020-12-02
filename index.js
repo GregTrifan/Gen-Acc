@@ -147,7 +147,7 @@ bot.on("message", async message => {
         let messageArray = message.content.split(" ");	
         let args = messageArray.slice(1);	
         var acc = args[1].split(":");
-        if (args.includes(" ")) { return message.reply("Please don't add multiple accounts within the command");}
+        if (acc[1].includes(' ')) { return message.reply("Please don't add multiple accounts within the command");}
 
         fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) { 	
         if(err){	
@@ -159,8 +159,8 @@ bot.on("message", async message => {
             try {	
                 fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(newnewData))	
                 message.reply("Service Created and account added!")	
-            } catch {	
-                message.channel.send('**Error** Cannot create service and add that account!')	
+            } catch {
+                message.channel.send('**Error** Cannot create service and add that account!');	
 
             }	
         }	
