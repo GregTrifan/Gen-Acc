@@ -182,8 +182,9 @@ bot.on("message", async message => {
 if(command === "addmore") { 
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(" ");  
-        let args = messageArray.slice(1);   
-        let acc = args.map(content => {
+        let args = messageArray[0];
+        let commander = messageArray.slice(1);   
+        let acc = commander.map(content => {
             account=content.split(":");
             return {
                 "email":account[0],
@@ -192,7 +193,7 @@ if(command === "addmore") {
         });
         
 
-        fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) {     
+        fs.readFile(__dirname + "/" + args.toLowerCase() + ".json",function(err, data) {     
         if(err){    
             let newnewData =  acc; 
             try {   
