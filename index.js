@@ -147,7 +147,7 @@ bot.on("message", async message => {
         let messageArray = message.content.split(" ");	
         let args = messageArray.slice(1);	
         var acc = args[1].split(":");
-        if (acc[1].includes(":")) return message.reply("Please don't add multiple accounts within the command")
+        if (acc[1].includes(":")) { return message.reply("Please don't add multiple accounts within the command");}
 
         fs.readFile(__dirname + "/" + args[0].toLowerCase() + ".json",function(err, data) { 	
         if(err){	
