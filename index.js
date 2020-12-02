@@ -166,7 +166,7 @@ bot.on("message", async message => {
             let newnewData =  accounts; 
             try {   
                 fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(newnewData))   
-                message.reply(`Service Created and ${accounts[1] ? "accounts" : "account" }added!`) 
+                message.reply(`Service Created and ${accounts[1] ? "accounts" : "account" } added!`) 
             } catch {
                 message.channel.send('**Error** Cannot create service and add that account/s!');  
 
