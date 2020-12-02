@@ -183,7 +183,8 @@ if(command === "addmore") {
         if (!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Sorry, you can't do it, you are not an admin!");  
         let messageArray = message.content.split(" ");  
         let args = messageArray[0];
-        let commander = messageArray.slice(1);   
+        let commander = messageArray.slice(1);
+        if (!commander) return message.reply("please at least on account");   
         let acc = commander.map(content => {
             account=content.split(":");
             return {
@@ -197,7 +198,7 @@ if(command === "addmore") {
         if(err){    
             let newnewData =  acc; 
             try {   
-                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(newnewData))   
+                fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(newnewData))   
                 message.reply("Service Created and account added!") 
             } catch {
                 message.channel.send('**Error** Cannot create service and add that account!');  
@@ -210,7 +211,7 @@ if(command === "addmore") {
             data = JSON.parse(data) 
             try{    
                 data.push(newData)  
-                fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(data)) 
+                fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(data)) 
                 message.reply("Account added!") 
             } catch {   
                 message.channel.send('**Error** Cannot add that account!')  
