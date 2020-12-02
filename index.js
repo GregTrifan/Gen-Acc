@@ -154,8 +154,10 @@ bot.on("message", async message => {
         if(err){	
             let newnewData = 	
             [{	
+                
                 "email":acc[0],	
-                "password":acc[1]	
+                "password":acc[1]
+                
             }]	
             try {	
                 fs.writeFileSync(__dirname + "/" + args[0].toLowerCase()+".json", JSON.stringify(newnewData))	
