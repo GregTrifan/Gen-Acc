@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
+var dotenv = require('dotenv');
+dotenv.config();
 const fs = require('fs')	
 let settings = JSON.parse(fs.readFileSync(__dirname+"/settings.json"));	
 let prefix = settings['prefix'];	
