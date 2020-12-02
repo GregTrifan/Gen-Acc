@@ -1,4 +1,6 @@
 node_modules/
 .env
+/netflix.json
+/.add.json
 /add.json
 

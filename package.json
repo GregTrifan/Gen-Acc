@@ -4,7 +4,7 @@
   "description": "A discord bot you can use to give accounts to your server's members",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
+    "test": "npx nodemon",
     "start": "node index.js"
   },
   "repository": {
