@@ -135,7 +135,7 @@ bot.on("message", async message => {
                 stock.push(file) 	
             });	
             console.log(stock)	
-
+            if(!stock) return message.channel.send("There aren't any services stored");
             stock.forEach((data) => {	
                 let acc = fs.readFileSync(__dirname + "/" + data)	
                 message.channel.send(data.replace(".json","")+" has "+JSON.parse(acc).length+" accounts\n")	
