@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
-const fs = require('fs')	
+const fs = require('fs')
+const dotenv=require('dotenv');
+dotenv.config();	
 let settings = JSON.parse(fs.readFileSync(__dirname+"/settings.json"));	
 let prefix = settings['prefix'];	
 let cooldown = settings['cooldown']	
@@ -134,8 +136,8 @@ bot.on("message", async message => {
             });	
             console.log(stock)	
 
-            stock.forEach(async function (data) {	
-                let acc = await fs.readFileSync(__dirname + "/" + data)	
+            stock.forEach((data) => {	
+                let acc = fs.readFileSync(__dirname + "/" + data)	
                 message.channel.send(data.replace(".json","")+" has "+JSON.parse(acc).length+" accounts\n")	
 
             })	
@@ -173,16 +175,23 @@ bot.on("message", async message => {
             }   
         }   
 
-        else {  
-            let store = accounts;
-            data = JSON.parse(store); 
-            try{    
-                data.push(newData)  
-                fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", JSON.stringify(data)); 
-                message.reply(`${accounts[1] ? "accounts" : "account" } added!`) 
-            } catch {   
-                message.channel.send('**Error** Cannot add that account/s!');  
-            }   
+        else {
+            try {
+            let data = fs.readFileSync(__dirname+"/"+args.toLowerCase()+".json");
+            data=data.toString().replace(/.$/,",");  
+                transformer =accounts.map((element) => {
+                data=data.replace(/.$/,",");  
+                data+=JSON.stringify(element)+"]";
+                console.log(element);
+            });
+                console.log(data);
+                data[data.length-1]="]";  
+                fs.writeFileSync(__dirname + "/" + args.toLowerCase()+".json", data); 
+                message.reply("Account added!") 
+            }
+                catch (err){   
+                message.channel.send(`**Error** Cannot add that account! ${err}`);  
+            }    
         }   
     });     
         
